@@ -38,15 +38,20 @@ public class Jugadores {
     boolean buscar(String nombre){
         Usuario tmp = inicio;
         boolean esta = false;
-        while(tmp!=fin){
-            if(tmp.nombre == nombre){
-                esta=true;
-                System.out.println("Usuario econtrado");
-                break;
-            }else{
-                tmp=tmp.siguiente;
+        
+        if(inicio!=null){
+            do{
+                if(tmp.nombre == nombre){
+                    esta=true;
+                    System.out.println("Usuario econtrado");
+                    break;
+                }else{
+                    tmp=tmp.siguiente;
+                }
             }
+            while(tmp!=fin);
         }
+        
         if(!esta)
             System.out.println("No se encontró");
         return esta;
