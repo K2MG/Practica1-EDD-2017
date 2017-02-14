@@ -9,7 +9,6 @@ public class Inicio extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
-     * popo
      */
     public Inicio() {
         initComponents();
