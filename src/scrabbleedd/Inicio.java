@@ -2,6 +2,8 @@
 package scrabbleedd;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -14,12 +16,18 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
+    File archivo;
+    JFileChooser fc;
+    String path;
+    
     public Inicio() {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
-        
+        archivo = null;
+        fc = null;
+        path="";
     }
 
     /**
@@ -73,7 +81,7 @@ public class Inicio extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         //Creamos el objeto JFileChooser
-        JFileChooser fc=new JFileChooser();
+        fc =new JFileChooser();
         FileNameExtensionFilter filtro =new FileNameExtensionFilter("XML Files","xml");
         fc.setFileFilter(filtro);
  
@@ -82,9 +90,10 @@ public class Inicio extends javax.swing.JFrame {
  
         //Si el usuario, pincha en aceptar
         if(seleccion==JFileChooser.APPROVE_OPTION){
- 
-            System.out.println("Entró");
-            File archivo =fc.getSelectedFile();
+
+            archivo =fc.getSelectedFile();
+            System.out.println("Entró al path: "+archivo.getAbsolutePath());
+            jButton2.setEnabled(true);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
