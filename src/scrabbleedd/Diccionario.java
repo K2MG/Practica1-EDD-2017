@@ -48,4 +48,22 @@ public class Diccionario {
         return esta;
     }
     
+    boolean eliminar(String palabra){
+        Palabra tmp = inicio, anterior = null;
+	while (tmp!=null){
+            if (tmp.palabra==palabra){
+                if (anterior == null)
+		inicio = inicio.siguiente;
+            else
+		anterior.siguiente = tmp.siguiente;
+            return true;
+            }
+            else{
+		anterior = tmp;
+		tmp = tmp.siguiente;				
+                }			                    
+	}
+	return false;		
+    }
+    
 }
