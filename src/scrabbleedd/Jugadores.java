@@ -35,4 +35,41 @@ public class Jugadores {
 	}
     }
     
+    boolean buscar(String nombre){
+        Usuario tmp = inicio;
+        boolean esta = false;
+        while(tmp!=fin){
+            if(tmp.nombre == nombre){
+                esta=true;
+                System.out.println("Usuario econtrado");
+                break;
+            }else{
+                tmp=tmp.siguiente;
+            }
+        }
+        if(!esta)
+            System.out.println("No se encontró");
+        return esta;
+    }
+    
+    boolean eliminar(String nombre){
+        Usuario tmp = inicio, anterior = fin;
+	while (tmp!=fin){
+            if (tmp.nombre==nombre){
+                if (anterior == fin){
+		inicio = inicio.siguiente;
+                fin.siguiente = inicio;
+                }else{
+                    anterior.siguiente = tmp.siguiente;
+                }
+            return true;
+            }
+            else{
+		anterior = tmp;
+		tmp = tmp.siguiente;				
+            }			                    
+	}
+	return false;		
+    }
+    
 }
