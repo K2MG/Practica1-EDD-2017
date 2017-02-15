@@ -135,8 +135,10 @@ public class Inicio extends javax.swing.JFrame {
                 List casillas = doble.getChildren();
                 for(int j = 0; j<casillas.size();j++){
                     Element casilla = (Element)casillas.get( j );
+                    System.out.println("Doble->");
                     System.out.println("Pos X: " + casilla.getChildText("x"));
                     System.out.println("Pos Y: " + casilla.getChildText("y"));
+                    System.out.println();
                     int x= Integer.parseInt(casilla.getChildText("x"));
                     int y= Integer.parseInt(casilla.getChildText("y"));
                     db.agregar(x, y);
@@ -151,8 +153,10 @@ public class Inicio extends javax.swing.JFrame {
                 List casillas = triple.getChildren();
                 for(int j = 0; j<casillas.size();j++){
                     Element casilla = (Element)casillas.get( j );
+                    System.out.println("Triple->");
                     System.out.println("Pos X: " + casilla.getChildText("x"));
                     System.out.println("Pos Y: " + casilla.getChildText("y"));
+                    System.out.println();
                     int x= Integer.parseInt(casilla.getChildText("x"));
                     int y= Integer.parseInt(casilla.getChildText("y"));
                     tr.agregar(x, y);
