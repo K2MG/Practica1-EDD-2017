@@ -35,7 +35,7 @@ public class Diccionario {
         Palabra tmp = inicio;
         boolean esta = false;
         while(tmp!=null){
-            if(tmp.palabra == palabra){
+            if(tmp.palabra.equals(palabra)){
                 esta=true;
                 System.out.println("Palabra econtrada");
                 break;
@@ -51,7 +51,7 @@ public class Diccionario {
     boolean eliminar(String palabra){
         Palabra tmp = inicio, anterior = null;
 	while (tmp!=null){
-            if (tmp.palabra==palabra){
+            if (tmp.palabra.equals(palabra)){
                 if (anterior == null)
 		inicio = inicio.siguiente;
             else

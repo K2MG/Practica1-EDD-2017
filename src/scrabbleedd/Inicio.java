@@ -4,9 +4,14 @@ package scrabbleedd;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.jdom2.*;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
 
 /**
  *
@@ -20,6 +25,8 @@ public class Inicio extends javax.swing.JFrame {
     File archivo;
     JFileChooser fc;
     String path;
+    String dimension;
+    Diccionario d;
     
     public Inicio() {
         initComponents();
@@ -85,25 +92,46 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        //Creamos el objeto JFileChooser
+        
         fc =new JFileChooser();
         FileNameExtensionFilter filtro =new FileNameExtensionFilter("XML Files","xml");
         fc.setFileFilter(filtro);
  
-        //Abrimos la ventana, guardamos la opcion seleccionada por el usuario
+        
         int seleccion=fc.showOpenDialog(null);
  
-        //Si el usuario, pincha en aceptar
+        
         if(seleccion==JFileChooser.APPROVE_OPTION){
 
             archivo =fc.getSelectedFile();
             System.out.println("Entró al path: "+archivo.getAbsolutePath());
+            cargarXml(archivo.getAbsolutePath());
             jButton2.setEnabled(true);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void cargarXml(String pathfile){
+        
+        d = new Diccionario();
+        //Se crea un SAXBuilder para poder parsear el archivo
+        SAXBuilder builder = new SAXBuilder();
+        File xmlFile = new File( pathfile );
+        try
+        {
+            Document document = (Document) builder.build(xmlFile);
+            Element rootNode = document.getRootElement();
+            String valorDimension = rootNode.getChildText("dimension");
+            System.out.println("Dimension : " + valorDimension);
+            //System.out.println("Apellido : " + node.getChildText("Apellido"));
+            
+        }catch ( IOException io ) {
+            System.out.println( io.getMessage() );
+        }catch ( JDOMException jdomex ) {
+            System.out.println( jdomex.getMessage() );
+        }
+    }
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
