@@ -35,32 +35,45 @@ public class Jugadores {
 	}
     }
     
-    boolean buscar(String nombre){
+    boolean buscar(String nomb){
         Usuario tmp = inicio;
         boolean esta = false;
         
-        if(inicio!=null){
-            do{
-                if(tmp.nombre == nombre){
-                    esta=true;
-                    System.out.println("Usuario econtrado");
-                    break;
-                }else{
-                    tmp=tmp.siguiente;
-                }
+        if(tmp==null){
+            System.out.println("Lista vacia, no existe el registro...");
+        }else if(tmp==fin){
+            if(tmp.nombre.equals(nomb)){
+                System.out.println("Existe el elemento...");
+                esta=true;
             }
-            while(tmp!=fin);
+        }else{
+            while (tmp!=fin){
+		if(tmp.nombre.equals(nomb)){
+                System.out.println("Existe el elemento...");
+                esta=true;
+                break;
+                }	
+		tmp=tmp.siguiente;
+            }
+            
+            if(tmp.nombre.equals(nomb) && esta==false){
+                System.out.println("Existe el elemento...");
+                esta=true;
+            }
+            
         }
         
-        if(!esta)
-            System.out.println("No se encontró");
+        if(esta==false){
+            System.out.println("NO Existe el elemento...");
+        }
+        System.out.println("Se va a retornar "+esta);
         return esta;
     }
     
     boolean eliminar(String nombre){
         Usuario tmp = inicio, anterior = fin;
 	while (tmp!=fin){
-            if (tmp.nombre==nombre){
+            if (tmp.nombre.equals(nombre)){
                 if (anterior == fin){
 		inicio = inicio.siguiente;
                 fin.siguiente = inicio;

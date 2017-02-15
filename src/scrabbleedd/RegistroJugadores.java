@@ -1,5 +1,7 @@
 package scrabbleedd;
 
+import javax.swing.JOptionPane;
+
 public class RegistroJugadores extends javax.swing.JFrame {
 
     public Jugadores j = new Jugadores();
@@ -89,11 +91,12 @@ public class RegistroJugadores extends javax.swing.JFrame {
         // TODO add your handling code here:
         String nombre = txtuser.getText();
         boolean existe = j.buscar(nombre);
-        if(existe){
-            System.out.println("El jugador existe, cambie el nombre");
+        if(existe==true){
+            JOptionPane.showMessageDialog(null, "El jugador ya existe, cambie el nombre.");
         }else{
             j.agregar(nombre);
             System.out.println("Se agrego a la lista "+nombre);
+            JOptionPane.showMessageDialog(null, "Se agrego a la lista "+nombre);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
