@@ -25,8 +25,10 @@ public class Inicio extends javax.swing.JFrame {
     File archivo;
     JFileChooser fc;
     String path;
-    String dimension;
-    Diccionario d;
+    public String dimension;
+    public Diccionario d;
+    public Dobles db;
+    public Triples tr;
     
     public Inicio() {
         initComponents();
@@ -114,6 +116,8 @@ public class Inicio extends javax.swing.JFrame {
     public void cargarXml(String pathfile){
         
         d = new Diccionario();
+        db = new Dobles();
+        tr = new Triples();
         //Se crea un SAXBuilder para poder parsear el archivo
         SAXBuilder builder = new SAXBuilder();
         File xmlFile = new File( pathfile );
@@ -123,7 +127,48 @@ public class Inicio extends javax.swing.JFrame {
             Element rootNode = document.getRootElement();
             String valorDimension = rootNode.getChildText("dimension");
             System.out.println("Dimension : " + valorDimension);
-            //System.out.println("Apellido : " + node.getChildText("Apellido"));
+            
+            List list_db = rootNode.getChildren("dobles");
+            for(int i = 0; i<list_db.size();i++){
+                Element doble = (Element)list_db.get(i);
+                
+                List casillas = doble.getChildren();
+                for(int j = 0; j<casillas.size();j++){
+                    Element casilla = (Element)casillas.get( j );
+                    System.out.println("Pos X: " + casilla.getChildText("x"));
+                    System.out.println("Pos Y: " + casilla.getChildText("y"));
+                    int x= Integer.parseInt(casilla.getChildText("x"));
+                    int y= Integer.parseInt(casilla.getChildText("y"));
+                    db.agregar(x, y);
+                }
+            }
+            
+            
+            List list_tr = rootNode.getChildren("triples");
+            for(int i = 0; i<list_tr.size();i++){
+                Element triple = (Element)list_tr.get(i);
+                
+                List casillas = triple.getChildren();
+                for(int j = 0; j<casillas.size();j++){
+                    Element casilla = (Element)casillas.get( j );
+                    System.out.println("Pos X: " + casilla.getChildText("x"));
+                    System.out.println("Pos Y: " + casilla.getChildText("y"));
+                    int x= Integer.parseInt(casilla.getChildText("x"));
+                    int y= Integer.parseInt(casilla.getChildText("y"));
+                    tr.agregar(x, y);
+                    
+                }
+            }
+            
+            Element dic = rootNode.getChild("diccionario");
+            List words = dic.getChildren("palabra");
+            for(int i = 0; i<words.size();i++){
+                Element word = (Element)words.get(i);
+                System.out.println("Palabra: " + word.getText());
+                d.agregar(word.getText());
+                
+            }
+            
             
         }catch ( IOException io ) {
             System.out.println( io.getMessage() );
