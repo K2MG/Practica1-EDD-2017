@@ -77,4 +77,19 @@ public class Jugadores {
 	return false;		
     }
     
+    void mostrar(){
+        Usuario tmp = inicio;
+	if (tmp==null)
+            System.out.println("lista vacia...");
+	else{
+            System.out.print("[");
+            while (tmp!=null){
+		System.out.print(tmp.nombre+" ");	
+		tmp=tmp.siguiente;
+            }			
+            System.out.println("]");
+	}
+    }
+    
+    
 }
