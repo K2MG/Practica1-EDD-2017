@@ -81,14 +81,19 @@ public class Jugadores {
         Usuario tmp = inicio;
 	if (tmp==null)
             System.out.println("lista vacia...");
-	else{
+        else if(tmp==fin){
             System.out.print("[");
-            while (tmp!=null){
+            System.out.print(tmp.nombre+" ");	
+            System.out.println("]");
+	}else{
+            System.out.print("[");
+            while (tmp!=fin){
 		System.out.print(tmp.nombre+" ");	
 		tmp=tmp.siguiente;
-            }			
+            }	
+            System.out.print(tmp.nombre+" ");
             System.out.println("]");
-	}
+        }
     }
     
     
