@@ -104,6 +104,8 @@ public class RegistroJugadores extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         j.mostrar();
+        dispose();
+        Juego j = new Juego();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
