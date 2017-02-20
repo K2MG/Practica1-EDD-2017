@@ -16,6 +16,9 @@ public class Juego extends javax.swing.JFrame {
      */
     public Juego() {
         initComponents();
+        setVisible(true);
+        setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
