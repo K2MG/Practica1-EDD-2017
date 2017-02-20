@@ -9,6 +9,9 @@ public class ScrabbleEdd {
         // TODO code application logic here
         Inicio i = new Inicio();
         
+        
     }
+    
+    
     
 }
