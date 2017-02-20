@@ -106,6 +106,7 @@ public class RegistroJugadores extends javax.swing.JFrame {
             j.agregar(nombre);
             System.out.println("Se agrego a la lista "+nombre);
             JOptionPane.showMessageDialog(null, "Se agrego a la lista "+nombre);
+            txtuser.setText("");
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -114,7 +115,7 @@ public class RegistroJugadores extends javax.swing.JFrame {
         // TODO add your handling code here:
         j.mostrar();
         dispose();
-        Juego ju = new Juego(j);
+        Juego ju = new Juego(j,db,tp,dd,dim);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

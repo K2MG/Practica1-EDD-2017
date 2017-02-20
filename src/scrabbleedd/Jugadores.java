@@ -139,8 +139,7 @@ public class Jugadores {
             pw.println("}");
             pw.close();
 
-            for (int i = 0; i < 10; i++)
-                pw.println("Linea " + i);
+            
 
         } catch (Exception e) {
             e.printStackTrace();

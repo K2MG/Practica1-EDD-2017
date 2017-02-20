@@ -5,6 +5,9 @@
  */
 package scrabbleedd;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
 class Palabra {
     
     String palabra;
@@ -64,6 +67,38 @@ public class Diccionario {
                 }			                    
 	}
 	return false;		
+    }
+    
+    void escribirArchivo(){
+        Palabra tmp = inicio;
+        
+        
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try
+        {
+            
+            fichero = new FileWriter("C:\\Users\\KMMG\\Desktop\\diccionario.dot");
+            pw = new PrintWriter(fichero);
+            pw.println("digraph G {");
+            while(tmp!=null){
+                if (tmp.siguiente==null){
+                    pw.println(tmp.palabra);
+                }else{
+                    pw.println(tmp.palabra+" -> "+tmp.siguiente.palabra);
+                }
+                tmp=tmp.siguiente;
+            }
+            pw.println("}");
+            pw.close();
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        
+	
     }
     
 }
