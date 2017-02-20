@@ -27,13 +27,13 @@ public class Jugadores {
         
 	if (inicio==null){
             inicio = fin = new Usuario(nombre);
-            inicio.siguiente= fin;
+            ///inicio.siguiente= fin;
             fin.siguiente = inicio;
         }else{
-            Usuario tmp = inicio;
-            inicio = new Usuario(nombre);
-            inicio.siguiente = tmp;
-            fin.siguiente=inicio;
+            //Usuario tmp = fin;
+            fin.siguiente = new Usuario(nombre);
+            fin.siguiente.siguiente=inicio;
+            fin=fin.siguiente;
             
 	}
     }
@@ -120,6 +120,7 @@ public class Jugadores {
         PrintWriter pw = null;
         try
         {
+            System.out.println("VA A EScribir Archivo");
             fichero = new FileWriter("C:\\Users\\KMMG\\Desktop\\usuarios.dot");
             pw = new PrintWriter(fichero);
             pw.println("digraph G {");
@@ -128,13 +129,15 @@ public class Jugadores {
                     pw.println(tmp.nombre);
                 }else{
                     while(tmp!=fin){
-                        pw.println(tmp.nombre+" -> "+tmp.siguiente.nombre);	
+                        pw.println(tmp.nombre+" -> "+tmp.siguiente.nombre);
+                        System.out.println(tmp.nombre+" -> "+tmp.siguiente.nombre);
                         tmp=tmp.siguiente;
                     }
                     pw.println(tmp.nombre+" -> "+tmp.siguiente.nombre);
                 }
             }
             pw.println("}");
+            pw.close();
 
             for (int i = 0; i < 10; i++)
                 pw.println("Linea " + i);

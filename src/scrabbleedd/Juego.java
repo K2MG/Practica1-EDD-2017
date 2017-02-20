@@ -5,45 +5,59 @@
  */
 package scrabbleedd;
 
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+import javax.swing.Timer;
+import java.awt.event.*;
+
 /**
  *
  * @author KMMG
  */
 public class Juego extends javax.swing.JFrame {
 
-    Runnable rT1;
-    Thread tT1 = new Thread(rT1);
+    
     Jugadores j;
     
-    public void setJugadores(Jugadores j){
-        this.j=j;
-    }
     
-    public Juego() {
+    
+    public Juego(Jugadores jj) {
         initComponents();
         setVisible(true);
         setLocationRelativeTo(null);
         setResizable(false);
-        j=new Jugadores();
+        j=jj;
         
-        rT1 = new Runnable() {
-			
-			
-	        @Override
-	        public void run() { 
-	        	
-	            try{
+        Timer timer = new Timer (100, new ActionListener ()
+         {
+             public void actionPerformed(ActionEvent e)
+             {
+                 try{
 	            	
 	            	j.escribirArchivo();
 	            	dibujarUsuarios("C:\\Users\\KMMG\\Desktop\\usuarios.dot","C:\\Users\\KMMG\\Desktop\\usuarios.png");
-	            }catch(Exception e){
+                        
+                        ImageIcon image = new ImageIcon("C:\\Users\\KMMG\\Desktop\\usuarios.png");  
+                        int scale = 3;  
+  
+                        int width = image.getIconWidth();  
+                        int height = image.getIconHeight();  
+                        BufferedImage buffer = new BufferedImage(scale * width, scale * height, BufferedImage.TYPE_INT_ARGB);  
+                        Graphics2D graphics = buffer.createGraphics();  
+                        graphics.scale(scale,scale);  
+                        image.paintIcon(null, graphics, 0, 0);  
+                        graphics.dispose();
+                        jLabel2.setIcon(image);
+                        
+	            }catch(Exception ee){
 	            	System.out.println("Error en el hilo");
 	            }
-	            
-	            
-
-	        }    
-        };
+             }
+         });
+         timer.start();
+        
+        
         
     }
     
@@ -198,7 +212,7 @@ public class Juego extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(585, Short.MAX_VALUE)
+                .addContainerGap(664, Short.MAX_VALUE)
                 .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -215,41 +229,7 @@ public class Juego extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Juego.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Juego().setVisible(true);
-            }
-        });
-    }
-
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

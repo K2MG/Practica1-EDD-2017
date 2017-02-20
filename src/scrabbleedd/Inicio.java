@@ -26,6 +26,7 @@ public class Inicio extends javax.swing.JFrame {
     JFileChooser fc;
     String path;
     public String dimension;
+
     public Diccionario d;
     public Dobles db;
     public Triples tr;
@@ -184,7 +185,7 @@ public class Inicio extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
-        RegistroJugadores rj = new RegistroJugadores();
+        RegistroJugadores rj = new RegistroJugadores(db,tr,d,dimension);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
