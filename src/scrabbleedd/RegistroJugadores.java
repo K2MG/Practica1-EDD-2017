@@ -12,6 +12,7 @@ public class RegistroJugadores extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
     }
+    
 
     
     @SuppressWarnings("unchecked")
@@ -105,7 +106,8 @@ public class RegistroJugadores extends javax.swing.JFrame {
         // TODO add your handling code here:
         j.mostrar();
         dispose();
-        Juego j = new Juego();
+        Juego ju = new Juego();
+        ju.setJugadores(j);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

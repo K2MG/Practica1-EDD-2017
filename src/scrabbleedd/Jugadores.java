@@ -5,6 +5,9 @@
  */
 package scrabbleedd;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
+
 class Usuario{
     String nombre;
     Usuario siguiente;
@@ -107,6 +110,41 @@ public class Jugadores {
             System.out.print(tmp.nombre+" ");
             System.out.println("]");
         }
+    }
+    
+    void escribirArchivo(){
+        Usuario tmp = inicio;
+        
+        
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try
+        {
+            fichero = new FileWriter("C:\\Users\\KMMG\\Desktop\\usuarios.dot");
+            pw = new PrintWriter(fichero);
+            pw.println("digraph G {");
+            if (tmp!=null){
+                if (tmp==fin){
+                    pw.println(tmp.nombre);
+                }else{
+                    while(tmp!=fin){
+                        pw.println(tmp.nombre+" -> "+tmp.siguiente.nombre);	
+                        tmp=tmp.siguiente;
+                    }
+                    pw.println(tmp.nombre+" -> "+tmp.siguiente.nombre);
+                }
+            }
+            pw.println("}");
+
+            for (int i = 0; i < 10; i++)
+                pw.println("Linea " + i);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        
+	
     }
     
     
