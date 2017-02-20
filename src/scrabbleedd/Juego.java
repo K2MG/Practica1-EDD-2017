@@ -46,9 +46,13 @@ public class Juego extends javax.swing.JFrame {
                                	
 	            j.escribirArchivo();
 	            generarImagen("C:\\Users\\KMMG\\Desktop\\usuarios.dot","C:\\Users\\KMMG\\Desktop\\usuarios.png");
+                    
                     ImageIcon image = new ImageIcon("C:\\Users\\KMMG\\Desktop\\usuarios.png");
+                    
+                    Icon ico = new ImageIcon(image.getImage());
+                    
                     jTabbedPane3.repaint();
-                    jLabel2.setIcon(image);
+                    jLabel2.setIcon(ico);
                     
 	        }catch(Exception ee){
 	            	System.out.println("Error en el hilo ");
