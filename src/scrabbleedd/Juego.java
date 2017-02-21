@@ -6,10 +6,12 @@
 package scrabbleedd;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import java.awt.event.*;
+import java.net.URL;
 import java.util.TimerTask;
 import javax.swing.Icon;
 
@@ -38,51 +40,19 @@ public class Juego extends javax.swing.JFrame {
         this.dim=dim;
         
         pintarTodas();
-        Timer timer1 = new Timer (1100, new ActionListener ()
-         {
-             public void actionPerformed(ActionEvent e)
-             {
-                 try{
-                               	
-	            j.escribirArchivo();
-	            generarImagen("C:\\Users\\KMMG\\Desktop\\usuarios.dot","C:\\Users\\KMMG\\Desktop\\usuarios.png");
-                    
-                    ImageIcon image = new ImageIcon("C:\\Users\\KMMG\\Desktop\\usuarios.png");
-                    
-                    Icon ico = new ImageIcon(image.getImage());
-                    
-                    jTabbedPane3.repaint();
-                    jLabel2.setIcon(ico);
-                    
-	        }catch(Exception ee){
-	            	System.out.println("Error en el hilo ");
-                        ee.printStackTrace();
-	        }
-             }
-         });
-         timer1.start();
+        
          
-         Timer timer2 = new Timer (1000, new ActionListener ()
-         {
-             public void actionPerformed(ActionEvent e)
-             {
-                 try{
-	            	
-	            	ddd.escribirArchivo();
-	            	generarImagen("C:\\Users\\KMMG\\Desktop\\diccionario.dot","C:\\Users\\KMMG\\Desktop\\diccionario.png");
-                        
-                        ImageIcon image = new ImageIcon("C:\\Users\\KMMG\\Desktop\\diccionario.png");  
-                        jTabbedPane3.repaint();
-                        jLabel1.setIcon(image);
-                        
-                        
-	            }catch(Exception ee){
-	            	System.out.println("Error en el hilo2");
-                        ee.printStackTrace();
-	            }
+         Timer timer = new Timer (1000, new ActionListener ()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+                pintarTodas();
+                
+                pintarTodas();
              }
-         });
-         timer2.start();
+        });
+
+        timer.start();
         
         
         
@@ -93,15 +63,26 @@ public class Juego extends javax.swing.JFrame {
 	            j.escribirArchivo();
 	            generarImagen("C:\\Users\\KMMG\\Desktop\\usuarios.dot","C:\\Users\\KMMG\\Desktop\\usuarios.png");
                     ImageIcon image = new ImageIcon("C:\\Users\\KMMG\\Desktop\\usuarios.png");
-                        
-                    jLabel2.setIcon(image);
+                    Icon icono = new ImageIcon(image.getImage().
+                    getScaledInstance(image.getIconWidth(), image.getIconHeight(), 
+                    Image.SCALE_DEFAULT));
+
+                    jLabel2.setText(null);
+
+                    jLabel2.setIcon( icono ); 
+                    
+                    
                     
                     ddd.escribirArchivo();
-	            	generarImagen("C:\\Users\\KMMG\\Desktop\\diccionario.dot","C:\\Users\\KMMG\\Desktop\\diccionario.png");
-                        
-                        ImageIcon image2 = new ImageIcon("C:\\Users\\KMMG\\Desktop\\diccionario.png");  
-                        jLabel1.setIcon(null);
-                        jLabel1.setIcon(image2);
+	            generarImagen("C:\\Users\\KMMG\\Desktop\\diccionario.dot","C:\\Users\\KMMG\\Desktop\\diccionario.png");
+                    ImageIcon image2 = new ImageIcon("C:\\Users\\KMMG\\Desktop\\diccionario.png");  
+                    Icon icono2 = new ImageIcon(image2.getImage().
+                    getScaledInstance(image2.getIconWidth(), image2.getIconHeight(), 
+                    Image.SCALE_DEFAULT));
+
+                    jLabel1.setText(null);
+
+                    jLabel1.setIcon( icono2 );
                         
 	        }catch(Exception ee){
 	            	System.out.println("Error en al pintarTodas ");
@@ -146,6 +127,7 @@ public class Juego extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtnuevapal = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -164,7 +146,7 @@ public class Juego extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -185,7 +167,7 @@ public class Juego extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -206,7 +188,7 @@ public class Juego extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -260,6 +242,13 @@ public class Juego extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jButton1.setText("Actualizar Labels");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -268,16 +257,24 @@ public class Juego extends javax.swing.JFrame {
                 .addContainerGap(468, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(42, 42, 42))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane3)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
 
@@ -292,9 +289,14 @@ public class Juego extends javax.swing.JFrame {
         txtnuevapal.setText("");
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        pintarTodas();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

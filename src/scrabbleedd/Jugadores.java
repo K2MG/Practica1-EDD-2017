@@ -126,14 +126,17 @@ public class Jugadores {
             pw.println("digraph G {");
             if (tmp!=null){
                 if (tmp==fin){
-                    pw.println(tmp.nombre);
+                    pw.println(Integer.toString(tmp.hashCode())+"[label=\""+tmp.nombre+"\" ]");
+                    //pw.println(tmp.nombre);
                 }else{
                     while(tmp!=fin){
-                        pw.println(tmp.nombre+" -> "+tmp.siguiente.nombre);
+                        pw.println(Integer.toString(tmp.hashCode())+"[label=\""+tmp.nombre+"\" ]");
+                        pw.println(Integer.toString(tmp.hashCode())+" -> "+Integer.toString(tmp.siguiente.hashCode()));
                         System.out.println(tmp.nombre+" -> "+tmp.siguiente.nombre);
                         tmp=tmp.siguiente;
                     }
-                    pw.println(tmp.nombre+" -> "+tmp.siguiente.nombre);
+                    pw.println(Integer.toString(tmp.hashCode())+"[label=\""+tmp.nombre+"\" ]");
+                    pw.println(Integer.toString(tmp.hashCode())+" -> "+Integer.toString(tmp.siguiente.hashCode()));
                 }
             }
             pw.println("}");

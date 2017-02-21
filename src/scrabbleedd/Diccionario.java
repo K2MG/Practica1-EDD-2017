@@ -81,14 +81,17 @@ public class Diccionario {
             fichero = new FileWriter("C:\\Users\\KMMG\\Desktop\\diccionario.dot");
             pw = new PrintWriter(fichero);
             pw.println("digraph G {");
-            while(tmp!=null){
-                if (tmp.siguiente==null){
-                    pw.println(tmp.palabra);
-                }else{
+            if (tmp.siguiente==null && tmp==inicio){
+                pw.println(tmp.palabra);
+            }else{
+                while(tmp!=null){
+                if(tmp.siguiente!=null){
                     pw.println(tmp.palabra+" -> "+tmp.siguiente.palabra);
                 }
                 tmp=tmp.siguiente;
             }
+            }
+            
             pw.println("}");
             pw.close();
 
