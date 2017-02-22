@@ -31,6 +31,7 @@ public class Juego extends javax.swing.JFrame {
     String fdim;
     ColaLetras fcl;
     Usuario jugadorenturno;
+    Usuario ultimoplayer;
     
     
     public Juego(Jugadores jj, Dobles db, Triples tp, Diccionario dd, String dim) {
@@ -44,10 +45,12 @@ public class Juego extends javax.swing.JFrame {
         fdim=dim;
         fcl = new ColaLetras();
         jugadorenturno=j.inicio;
+        ultimoplayer=j.fin;
         lblturno.setText(jugadorenturno.nombre);
         
         pintarTodas();
         llenarColaLetras();
+        agregarFichas();
         //JOptionPane.showMessageDialog(null, "Se lleno la cola de letras.");
          Timer timer = new Timer (1000, new ActionListener ()
         {
@@ -55,7 +58,7 @@ public class Juego extends javax.swing.JFrame {
             {
                 pintarTodas();
                 
-                pintarTodas();
+                //pintarTodas();
              }
         });
 
@@ -434,6 +437,19 @@ public class Juego extends javax.swing.JFrame {
                 }
             }
             
+        }
+    }
+    
+    private void agregarFichas(){
+        Usuario tmp=jugadorenturno;
+        while(tmp!=ultimoplayer){
+            for(int i =0; i<7;i++){
+                tmp.agregarLetra(fcl.expulsar());
+            }
+            tmp=tmp.siguiente;
+        }
+        for(int i =0; i<7;i++){
+                tmp.agregarLetra(fcl.expulsar());
         }
     }
     

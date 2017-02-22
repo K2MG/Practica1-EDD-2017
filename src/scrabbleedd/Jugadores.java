@@ -20,7 +20,7 @@ class Usuario{
     }
     
     void agregarLetra(Letra nueva){
-        
+        nueva.sig=null;
 	if (cabeza==null){
             cabeza = nueva;
             cabeza.sig = null;
