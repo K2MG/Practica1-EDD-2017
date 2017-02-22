@@ -11,10 +11,56 @@ import java.io.PrintWriter;
 class Usuario{
     String nombre;
     Usuario siguiente;
+    Letra cabeza;
     
     public Usuario(String nombre){
         this.nombre=nombre;
         this.siguiente=null;
+        this.cabeza=null;
+    }
+    
+    void agregarLetra(Letra nueva){
+        
+	if (cabeza==null){
+            cabeza = nueva;
+            cabeza.sig = null;
+        }else{
+            Letra tmp = cabeza;
+            while(tmp.sig!=null){
+                tmp=tmp.sig;
+            }
+            tmp.sig=nueva;
+	}
+    }
+    
+    void escribirArchivo(){
+        FileWriter fichero = null;
+        PrintWriter pw = null;
+        try
+        {
+            fichero = new FileWriter("C:\\Users\\KMMG\\Desktop\\userfichas.dot");
+            pw = new PrintWriter(fichero);
+            pw.println("digraph G {");
+            pw.println(Integer.toString(this.hashCode())+"[label=\""+this.nombre+"\" ]");
+            Letra ini = this.cabeza;
+            if (ini!=null){
+                pw.println(Integer.toString(this.hashCode())+" -> "+Integer.toString(ini.hashCode()));
+                while(ini!=null){
+                    pw.println(Integer.toString(ini.hashCode())+"[label=\""+ini.letra+"\", shape=box ]");
+                    if(ini.sig!=null){
+                        pw.println(Integer.toString(ini.hashCode())+" -> "+Integer.toString(ini.sig.hashCode()));
+                    }
+                    ini=ini.sig;
+                }
+            }
+            pw.println("}");
+            pw.close();
+
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     
 }
@@ -37,6 +83,8 @@ public class Jugadores {
             
 	}
     }
+    
+    
     
     boolean buscar(String nomb){
         Usuario tmp = inicio;
@@ -71,6 +119,45 @@ public class Jugadores {
         }
         System.out.println("Se va a retornar "+esta);
         return esta;
+    }
+    
+    Usuario buscarJugadorConcreto(String nomb){
+        Usuario res = null;
+        Usuario tmp = inicio;
+        boolean esta = false;
+        
+        if(tmp==null){
+            res=null;
+        }else if(tmp==fin){
+            if(tmp.nombre.equals(nomb)){
+                res= tmp;
+                esta=true;
+            }
+        }else{
+            while (tmp!=fin){
+		if(tmp.nombre.equals(nomb)){
+                System.out.println("Existe el elemento...");
+                esta=true;
+                res=tmp;
+                break;
+                }	
+		tmp=tmp.siguiente;
+            }
+            
+            if(tmp.nombre.equals(nomb) && esta==false){
+                System.out.println("Existe el elemento...");
+                esta=true;
+                res=tmp;
+            }
+            
+        }
+        
+        if(esta==false){
+            System.out.println("NO Existe el elemento...");
+            res=null;
+        }
+        System.out.println("Se va a retornar "+esta);
+        return res;
     }
     
     boolean eliminar(String nombre){
