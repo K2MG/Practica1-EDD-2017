@@ -33,6 +33,33 @@ class Usuario{
 	}
     }
     
+    Letra expulsar(int id){
+        
+        Letra aux = this.cabeza;
+        Letra ant=null;
+        Letra pos=null;
+        Letra ssig=null;
+        
+        if(id==aux.id){
+            pos=aux;
+            cabeza=aux.sig;
+        }else{
+            aux=aux.sig;
+            while(aux!=null){
+                if(id==aux.sig.id){
+                    ant=aux;
+                    pos=aux.sig;
+                    ssig=aux.sig.sig;
+                    break;
+                }
+                aux=aux.sig;
+            }
+            ant.sig=ssig;
+        }
+        
+        return pos;
+    }
+    
     void escribirArchivo(){
         FileWriter fichero = null;
         PrintWriter pw = null;

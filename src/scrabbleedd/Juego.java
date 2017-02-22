@@ -32,6 +32,20 @@ public class Juego extends javax.swing.JFrame {
     ColaLetras fcl;
     Usuario jugadorenturno;
     Usuario ultimoplayer;
+    int v1;
+    int v2;
+    int v3;
+    int v4;
+    int v5;
+    int v6;
+    int v7;
+    int id1;
+    int id2;
+    int id3;
+    int id4;
+    int id5;
+    int id6;
+    int id7;
     
     
     public Juego(Jugadores jj, Dobles db, Triples tp, Diccionario dd, String dim) {
@@ -47,10 +61,18 @@ public class Juego extends javax.swing.JFrame {
         jugadorenturno=j.inicio;
         ultimoplayer=j.fin;
         lblturno.setText(jugadorenturno.nombre);
+        cb1.setText(null);
+        cb2.setText(null);
+        cb3.setText(null);
+        cb4.setText(null);
+        cb5.setText(null);
+        cb6.setText(null);
+        cb7.setText(null);
         
         pintarTodas();
         llenarColaLetras();
         agregarFichas();
+        cargarCheckBoxs();
         //JOptionPane.showMessageDialog(null, "Se lleno la cola de letras.");
          Timer timer = new Timer (1000, new ActionListener ()
         {
@@ -452,6 +474,52 @@ public class Juego extends javax.swing.JFrame {
                 tmp.agregarLetra(fcl.expulsar());
         }
     }
+    private void cargarCheckBoxs(){
+        Letra tmp=jugadorenturno.cabeza;
+        int i =0;
+        while(tmp!=null){
+            
+            switch(i){
+                case 0:
+                    cb1.setText(tmp.letra);
+                    id1=tmp.id;
+                    v1=tmp.valor;
+                    break;
+                case 1:
+                    cb2.setText(tmp.letra);
+                    id2=tmp.id;
+                    v2=tmp.valor;
+                    break;
+                case 2:
+                    cb3.setText(tmp.letra);
+                    id3=tmp.id;
+                    v3=tmp.valor;
+                    break;
+                case 3:
+                    cb4.setText(tmp.letra);
+                    id4=tmp.id;
+                    v4=tmp.valor;
+                    break;
+                case 4:
+                    cb5.setText(tmp.letra);
+                    id5=tmp.id;
+                    v5=tmp.valor;
+                    break;
+                case 5:
+                    cb6.setText(tmp.letra);
+                    id6=tmp.id;
+                    v6=tmp.valor;
+                    break;
+                case 6:
+                    cb7.setText(tmp.letra);
+                    id7=tmp.id;
+                    v7=tmp.valor;
+                    break;
+            }
+            tmp=tmp.sig;
+            i++;
+        }
+    }
     
     
     /**
@@ -480,6 +548,14 @@ public class Juego extends javax.swing.JFrame {
         btnAgregar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         lblturno = new javax.swing.JLabel();
+        cb1 = new javax.swing.JCheckBox();
+        cb2 = new javax.swing.JCheckBox();
+        cb3 = new javax.swing.JCheckBox();
+        cb4 = new javax.swing.JCheckBox();
+        cb5 = new javax.swing.JCheckBox();
+        cb6 = new javax.swing.JCheckBox();
+        cb7 = new javax.swing.JCheckBox();
+        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -525,6 +601,8 @@ public class Juego extends javax.swing.JFrame {
 
         jTabbedPane3.addTab("Fichas Activas", jScrollPane4);
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
         jLabel6.setText("Nueva Palabra:");
 
         btnAgregar.setText("Agregar Palabra");
@@ -540,32 +618,71 @@ public class Juego extends javax.swing.JFrame {
         lblturno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblturno.setText("JUGADOR 1");
 
+        cb1.setText("jCheckBox1");
+
+        cb2.setText("jCheckBox2");
+
+        cb3.setText("jCheckBox3");
+
+        cb4.setText("jCheckBox4");
+
+        cb5.setText("jCheckBox5");
+
+        cb6.setText("jCheckBox6");
+
+        cb7.setText("jCheckBox7");
+
+        jButton2.setText("Cambiar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6))
-                .addGap(54, 54, 54))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblturno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cb2)
+                    .addComponent(cb1)
+                    .addComponent(cb3)
+                    .addComponent(cb4))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cb5)
+                    .addComponent(cb6)
+                    .addComponent(cb7))
+                .addGap(21, 21, 21))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(btnAgregar))
-                    .addComponent(txtnuevapal, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtnuevapal, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(btnAgregar))
+                            .addComponent(lblturno, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(25, 25, 25)
                 .addComponent(jLabel7)
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblturno, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(106, 106, 106)
                 .addComponent(jLabel6)
@@ -573,7 +690,23 @@ public class Juego extends javax.swing.JFrame {
                 .addComponent(txtnuevapal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAgregar)
-                .addContainerGap(251, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb1)
+                    .addComponent(cb5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb2)
+                    .addComponent(cb6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cb3)
+                    .addComponent(cb7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cb4)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(29, 29, 29))
         );
 
         jButton1.setText("Actualizar Labels");
@@ -588,7 +721,7 @@ public class Juego extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(468, Short.MAX_VALUE)
+                .addContainerGap(437, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -607,7 +740,7 @@ public class Juego extends javax.swing.JFrame {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(jButton1)))
                 .addContainerGap())
         );
@@ -627,12 +760,63 @@ public class Juego extends javax.swing.JFrame {
         //--------------------------------------------------------------------------------------------------------------A
         jugadorenturno=jugadorenturno.siguiente;
         lblturno.setText(jugadorenturno.nombre);
+        cargarCheckBoxs();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(cb1.isSelected()){
+            Letra tmp = jugadorenturno.expulsar(id1);
+            fcl.agregar(tmp.id, tmp.letra, tmp.valor);
+            jugadorenturno.agregarLetra(fcl.expulsar());
+        }
+        if(cb2.isSelected()){
+            Letra tmp = jugadorenturno.expulsar(id2);
+            fcl.agregar(tmp.id, tmp.letra, tmp.valor);
+            jugadorenturno.agregarLetra(fcl.expulsar());
+        }
+        if(cb3.isSelected()){
+            Letra tmp = jugadorenturno.expulsar(id3);
+            fcl.agregar(tmp.id, tmp.letra, tmp.valor);
+            jugadorenturno.agregarLetra(fcl.expulsar());
+        }
+        if(cb4.isSelected()){
+            Letra tmp = jugadorenturno.expulsar(id4);
+            fcl.agregar(tmp.id, tmp.letra, tmp.valor);
+            jugadorenturno.agregarLetra(fcl.expulsar());
+        }
+        if(cb5.isSelected()){
+            Letra tmp = jugadorenturno.expulsar(id5);
+            fcl.agregar(tmp.id, tmp.letra, tmp.valor);
+            jugadorenturno.agregarLetra(fcl.expulsar());
+        }
+        if(cb6.isSelected()){
+            Letra tmp = jugadorenturno.expulsar(id6);
+            fcl.agregar(tmp.id, tmp.letra, tmp.valor);
+            jugadorenturno.agregarLetra(fcl.expulsar());
+        }
+        if(cb7.isSelected()){
+            Letra tmp = jugadorenturno.expulsar(id7);
+            fcl.agregar(tmp.id, tmp.letra, tmp.valor);
+            jugadorenturno.agregarLetra(fcl.expulsar());
+        }
+        cargarCheckBoxs();
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JCheckBox cb1;
+    private javax.swing.JCheckBox cb2;
+    private javax.swing.JCheckBox cb3;
+    private javax.swing.JCheckBox cb4;
+    private javax.swing.JCheckBox cb5;
+    private javax.swing.JCheckBox cb6;
+    private javax.swing.JCheckBox cb7;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
